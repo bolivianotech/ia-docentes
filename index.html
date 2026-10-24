@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitación Docente UPDS | Claude AI y GitHub para Recursos Digitales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        upds: {
+                            blue: '#223B82',       // Azul Primario Corporativo
+                            cyan: '#0085C0',       // Celeste Corporativo
+                            sky: '#27BCEE',        // Celeste apoyo
+                            teal: '#00A08C',       // Verde esferas institucionales
+                            red: '#BF0811',        // Rojo esferas institucionales
+                            gray: '#C1C0C0',       // Gris secundario
+                            dark: '#0f1a38',
+                            light: '#f4f7fb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        heading: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Montserrat & Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,400&family=Open Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #1e293b;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .gradient-upds {
+            background: linear-gradient(135deg, #223B82 0%, #152759 100%);
+        }
+        .gradient-cyan {
+            background: linear-gradient(135deg, #0085C0 0%, #27BCEE 100%);
+        }
+        .card-session {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .card-session:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px -6px rgba(34, 59, 130, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- BARRA SUPERIOR INSTITUCIONAL -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <!-- Isologo UPDS -->
+            <div class="flex items-center gap-3">
+                <svg class="h-12 w-auto" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Isologo UPDS">
+                    <!-- Esferas Superiores (9 esferas con gradientes institucionales) -->
+                    <defs>
+                        <radialGradient id="greenSphere" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#34D399"/>
+                            <stop offset="50%" stop-color="#00A08C"/>
+                            <stop offset="100%" stop-color="#065F46"/>
+                        </radialGradient>
+                        <radialGradient id="blueSphere" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#38BDF8"/>
+                            <stop offset="50%" stop-color="#223B82"/>
+                            <stop offset="100%" stop-color="#0F172A"/>
+                        </radialGradient>
+                        <radialGradient id="redSphere" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#F87171"/>
+                            <stop offset="50%" stop-color="#BF0811"/>
+                            <stop offset="100%" stop-color="#7F1D1D"/>
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Fila 1 (Cúspide Verde) -->
+                    <circle cx="80" cy="16" r="7.5" fill="url(#greenSphere)" />
+
+                    <!-- Fila 2 (Azul - Verde - Azul) -->
+                    <circle cx="56" cy="32" r="8" fill="url(#blueSphere)" />
+                    <circle cx="80" cy="34" r="10" fill="url(#greenSphere)" />
+                    <circle cx="104" cy="32" r="8" fill="url(#blueSphere)" />
+
+                    <!-- Fila 3 Lateral Red Dots + Internas Azul -->
+                    <circle cx="36" cy="50" r="6.5" fill="url(#redSphere)" />
+                    <circle cx="56" cy="56" r="8" fill="url(#blueSphere)" />
+                    <circle cx="80" cy="58" r="10" fill="url(#greenSphere)" />
+                    <circle cx="104" cy="56" r="8" fill="url(#blueSphere)" />
+                    <circle cx="124" cy="50" r="6.5" fill="url(#redSphere)" />
+
+                    <!-- Figura Humana Erguida (Sosteniendo el saber) -->
+                    <path d="M80 66 C83 66 85.5 68.5 85.5 71.5 C85.5 74.5 83 77 80 77 C77 77 74.5 74.5 74.5 71.5 C74.5 68.5 77 66 80 66 Z" fill="#223B82"/>
+                    <path d="M80 79 C84.5 79 90.5 75 97 68.5 C98 67.5 99.5 68 99 69.5 C95 80 87 83 85 86 L86 98 L92 108 C93 110 90.5 112 89 110 L83 100 L77 100 L71 110 C69.5 112 67 110 68 108 L74 98 L75 86 C73 83 65 80 61 69.5 C60.5 68 62 67.5 63 68.5 C69.5 75 75.5 79 80 79 Z" fill="#223B82"/>
+
+                    <!-- Tipografía Institucional Base -->
+                    <text x="80" y="130" text-anchor="middle" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="800" font-size="8.8" fill="#BF0811" letter-spacing="0.4">UNIVERSIDAD PRIVADA</text>
+                    <line x1="16" y1="134" x2="144" y2="134" stroke="#BF0811" stroke-width="0.9" />
+                    <text x="80" y="148" text-anchor="middle" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="12.5" fill="#223B82" letter-spacing="0.3">DOMINGO SAVIO</text>
+                </svg>
+
+                <div class="border-l border-slate-300 pl-3">
+                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Formación Docente</span>
+                    <span class="block text-sm font-bold text-upds-blue leading-tight">Facultad de Ingeniería</span>
+                </div>
+            </div>
+
+            <!-- Botones y Enlaces Rápidos -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="#ruta" class="hidden sm:inline-flex text-xs font-semibold text-slate-600 hover:text-upds-blue px-3 py-2 rounded-lg transition-colors">
+                    Ruta de Sesiones
+                </a>
+                <a href="#producto-final" class="hidden sm:inline-flex text-xs font-semibold text-slate-600 hover:text-upds-blue px-3 py-2 rounded-lg transition-colors">
+                    Producto Final
+                </a>
+                <a href="#grabaciones-info" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-upds-cyan hover:bg-[#0074a8] px-3.5 py-2 rounded-lg transition-all shadow-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Grabaciones (~30 min)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO / ENCABEZADO PRINCIPAL -->
+    <section class="gradient-upds text-white relative overflow-hidden py-12 sm:py-16 lg:py-20">
+        <!-- Texturas sutiles de fondo -->
+        <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-upds-cyan/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-upds-sky/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <!-- Badge para docentes -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs sm:text-sm font-medium mb-6">
+                <span class="w-2 h-2 rounded-full bg-upds-sky animate-pulse"></span>
+                Invitación para capacitación sin prerrequisitos de programación o IA
+            </div>
+
+            <!-- Título Oficial -->
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-5 leading-tight">
+                Claude AI y GitHub para la Creación y Publicación de Recursos Digitales
+            </h1>
+
+            <p class="text-base sm:text-lg lg:text-xl text-slate-200 max-w-3xl mx-auto font-light leading-relaxed mb-8">
+                Un programa eminentemente práctico, paso a paso, diseñado para docentes universitarios de todas las áreas del conocimiento que buscan optimizar su tiempo evaluativo mediante herramientas modernas de inteligencia artificial y publicación web.
+            </p>
+
+            <!-- Recuadro: Objetivo General -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 text-left border border-white/20 shadow-xl max-w-3xl mx-auto">
+                <div class="flex items-start gap-4">
+                    <div class="p-2.5 rounded-xl bg-upds-cyan text-white shrink-0 mt-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-upds-sky mb-1">
+                            Objetivo General del Módulo
+                        </h2>
+                        <p class="text-sm sm:text-base text-white/95 leading-relaxed">
+                            Capacitar a los docentes en el uso estructurado de <strong>Claude AI</strong> para la generación de evaluaciones interactivas y material académico, y en la utilización de <strong>GitHub Pages</strong> como canal autónomo para alojar y compartir exámenes web directamente integrados en sus aulas virtuales de <strong>Moodle</strong>, automatizando además labores rutinarias con Skills personalizadas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: MODELO DE REPASO Y GRABACIONES -->
+    <section id="grabaciones-info" class="bg-white border-b border-slate-200 py-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-upds-blue/10 text-upds-blue flex items-center justify-center shrink-0">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-upds-blue mb-1">
+                            Grabaciones breves de repaso (~30 minutos por sesión)
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl">
+                            Cada una de las 6 sesiones cuenta con una grabación concisa de aproximadamente <strong>30 minutos</strong> según el plan. Cada video contiene la <strong>explicación conceptual y la demostración en pantalla</strong> de los procedimientos exactos, permitiendo que cada participante repase a su propio ritmo antes de generar sus evidencias.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex shrink-0">
+                    <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                        100% Demostraciones reales
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: RUTA DE APRENDIZAJE (6 SESIONES) -->
+    <section id="ruta" class="py-12 sm:py-16 lg:py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Título de sección -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-upds-cyan block mb-2">Desglose Cronológico</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-upds-blue">
+                    Ruta de Aprendizaje (6 Sesiones)
+                </h2>
+                <p class="text-sm text-slate-600 mt-2">
+                    Estructura integral de cada sesión: contenido demostrado en video, actividad práctica del docente y producto tangible obtenido.
+                </p>
+            </div>
+
+            <!-- Grilla de Tarjetas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- SESIÓN 1 -->
+                <div class="card-session bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-upds-blue text-white font-heading font-bold text-sm">
+                                01
+                            </span>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">
+                                Video ~30 min - 29 / 10 / 2026
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            Fundamentos de Claude en Windows
+                        </h3>
+                        
+                        <!-- Qué se verá en la grabación -->
+                        <div class="mb-3 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-upds-blue font-semibold mb-1">En la grabación:</strong>
+                            Demostración de cómo instalar la aplicación de escritorio en Windows, crear y configurar la cuenta de usuario, y aplicación paso a paso de la fórmula <em>Contexto + Tarea + Formato</em>.
+                        </div>
+
+                        <!-- Qué realizará el participante -->
+                        <div class="mb-4 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-slate-700 font-semibold mb-1">Actividad docente:</strong>
+                            Instalar la herramienta, explorar la interfaz de Claude y formular consultas estructuradas orientadas a la práctica pedagógica universitaria.
+                        </div>
+                    </div>
+
+                    <!-- Producto de la sesión -->
+                    <div class="pt-3 border-t border-slate-100 bg-blue-50/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-upds-blue block mb-0.5">Producto / Evidencia:</span>
+                        <p class="text-xs font-semibold text-slate-800">
+                            3 conversaciones documentadas con pedidos aplicados a tareas docentes reales.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SESIÓN 2 -->
+                <div class="card-session bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-upds-blue text-white font-heading font-bold text-sm">
+                                02
+                            </span>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">
+                                Video ~30 min - 31 / 10 / 2026
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            Proyectos de Claude
+                        </h3>
+                        
+                        <div class="mb-3 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-upds-blue font-semibold mb-1">En la grabación:</strong>
+                            Explicación conceptual de los Proyectos en Claude, carga ordenada de documentos de referencia de la asignatura y configuración precisa de instrucciones del sistema.
+                        </div>
+
+                        <div class="mb-4 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-slate-700 font-semibold mb-1">Actividad docente:</strong>
+                            Crear un espacio de Proyecto específico para su asignatura y calibrar sus parámetros directrices según su plan formativo.
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 bg-blue-50/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-upds-blue block mb-0.5">Producto / Evidencia:</span>
+                        <p class="text-xs font-semibold text-slate-800">
+                            Al menos 1 Proyecto de Claude creado, configurado y probado con una materia real.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SESIÓN 3 -->
+                <div class="card-session bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-upds-blue text-white font-heading font-bold text-sm">
+                                03
+                            </span>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">
+                                Video ~30 min - 05 / 11 / 2026
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            Skill de Exámenes
+                        </h3>
+                        
+                        <div class="mb-3 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-upds-blue font-semibold mb-1">En la grabación:</strong>
+                            Demostración de activación y funcionamiento de la Skill especializada <code class="text-upds-blue font-mono bg-blue-50 px-1 py-0.5 rounded">generador-examenes-upds</code> y revisión de los archivos producidos.
+                        </div>
+
+                        <div class="mb-4 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-slate-700 font-semibold mb-1">Actividad docente:</strong>
+                            Ingresar reactivos o contenidos temáticos a la Skill y generar una prueba evaluativa interactiva y digital para su grupo.
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 bg-blue-50/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-upds-blue block mb-0.5">Producto / Evidencia:</span>
+                        <p class="text-xs font-semibold text-slate-800">
+                            1 examen interactivo de la asignatura, con sus respectivos archivos de salida listos para despliegue.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SESIÓN 4 -->
+                <div class="card-session bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-upds-blue text-white font-heading font-bold text-sm">
+                                04
+                            </span>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">
+                                Video ~30 min - 07 / 11 / 2026
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            GitHub y GitHub Pages
+                        </h3>
+                        
+                        <div class="mb-3 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-upds-blue font-semibold mb-1">En la grabación:</strong>
+                            Guía visual de cómo abrir repositorio en GitHub, subir los archivos generados en la sesión anterior, habilitar el servicio GitHub Pages y verificar el link público.
+                        </div>
+
+                        <div class="mb-4 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-slate-700 font-semibold mb-1">Actividad docente:</strong>
+                            Publicar los archivos de su examen en la nube web sin lidiar con servidores complejos ni comandos técnicos.
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 bg-blue-50/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-upds-blue block mb-0.5">Producto / Evidencia:</span>
+                        <p class="text-xs font-semibold text-slate-800">
+                            Examen digital publicado en la web y accesible de forma inmediata mediante una URL funcional.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SESIÓN 5 -->
+                <div class="card-session bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-upds-blue text-white font-heading font-bold text-sm">
+                                05
+                            </span>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">
+                                Video ~30 min - 12 / 11 / 2026
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            Creación de una Skill Propia
+                        </h3>
+                        
+                        <div class="mb-3 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-upds-blue font-semibold mb-1">En la grabación:</strong>
+                            Metodología para identificar una tarea docente repetitiva, estructurar qué datos recibe, qué pasos sigue y qué produce; redacción y calibración de la lógica.
+                        </div>
+
+                        <div class="mb-4 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-slate-700 font-semibold mb-1">Actividad docente:</strong>
+                            Definir, escribir, probar y afinar las instrucciones de una Skill personalizada reutilizable para su quehacer cotidiano.
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 bg-blue-50/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-upds-blue block mb-0.5">Producto / Evidencia:</span>
+                        <p class="text-xs font-semibold text-slate-800">
+                            Versión inicial de la Skill propia con sus instrucciones redactadas y una prueba documentada.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SESIÓN 6 -->
+                <div class="card-session bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-upds-blue text-white font-heading font-bold text-sm">
+                                06
+                            </span>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">
+                                Video ~30 min - 14 / 11 / 2026
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            Buenas Prácticas e Integración
+                        </h3>
+                        
+                        <div class="mb-3 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-upds-blue font-semibold mb-1">En la grabación:</strong>
+                            Demostración de cómo añadir el enlace del examen como recurso interactivo en la plataforma Moodle, revisión de condiciones de uso y recorrido del flujo global.
+                        </div>
+
+                        <div class="mb-4 text-xs leading-relaxed text-slate-600">
+                            <strong class="text-slate-800 block text-[11px] uppercase tracking-wide text-slate-700 font-semibold mb-1">Actividad docente:</strong>
+                            Vincular la evaluación en su aula virtual institucional y comprobar la operatividad integral de todo el ciclo de trabajo.
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 bg-blue-50/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-upds-blue block mb-0.5">Producto / Evidencia:</span>
+                        <p class="text-xs font-semibold text-slate-800">
+                            Examen probado, publicado y enlazado en Moodle, más verificación final de la Skill propia.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: PRODUCTO FINAL CONCRETO -->
+    <section id="producto-final" class="py-12 sm:py-16 bg-white border-t border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-bold uppercase tracking-wider text-upds-blue block mb-1">Logro Concreto y Aplicado</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                    ¿Qué tendrás al finalizar el programa?
+                </h2>
+                <p class="text-sm text-slate-600 mt-2">
+                    Cada docente participante culminará la capacitación con dos resultados directos y listos para utilizar en sus materias:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Entregable 1 -->
+                <div class="rounded-2xl border-2 border-upds-blue/20 bg-slate-50 p-6 sm:p-7 relative overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-upds-blue text-white flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <span class="text-xs font-bold text-upds-blue uppercase tracking-wider">Producto Principal A</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1 mb-3">
+                        Examen Digital Publicado y Enlazado en Moodle
+                    </h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Un examen interactivo diseñado específicamente para la materia que dicta, alojado públicamente mediante <strong>GitHub Pages</strong> a través de una URL accesible para los estudiantes, e insertado formalmente como recurso evaluativo dentro del aula virtual institucional en <strong>Moodle</strong>.
+                    </p>
+                </div>
+
+                <!-- Entregable 2 -->
+                <div class="rounded-2xl border-2 border-upds-cyan/30 bg-slate-50 p-6 sm:p-7 relative overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-upds-cyan text-white flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <span class="text-xs font-bold text-upds-cyan uppercase tracking-wider">Producto Principal B</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1 mb-3">
+                        Skill Propia para una Tarea Rutinaria
+                    </h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Una <strong>Skill personalizada</strong> con instrucciones estructuradas y pruebas de validación documentadas, diseñada para automatizar o agilizar una actividad académica recurrente de su labor docente cotidiana (diseño de rúbricas, guías de estudio o ejercicios de repaso).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CIERRE DIRIGIDO A DOCENTES -->
+    <section class="bg-slate-100 py-12 border-t border-slate-200">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-xl sm:text-2xl font-bold text-upds-blue mb-3">
+                Innovación académica con sentido práctico y humano
+            </h2>
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+                No se requiere ninguna experiencia previa en desarrollo de software ni conocimientos técnicos avanzados en inteligencia artificial. La capacitación guía cada clic paso a paso, acompañando a cada docente a transformar sus evaluaciones en experiencias digitales dinámicas que enriquecen el proceso formativo de nuestros estudiantes.
+            </p>
+            
+            <!-- Slogan Oficial UPDS: Profesionales + humanos -->
+            <div class="inline-flex items-center gap-2 pt-4 border-t border-slate-200 text-upds-blue">
+                <span class="font-heading font-normal italic text-lg sm:text-xl tracking-tight text-upds-blue">Docentes Profesionales</span>
+                <span class="text-upds-cyan font-bold text-xl leading-none">+</span>
+                <span class="font-heading font-normal italic text-lg sm:text-xl tracking-tight text-upds-blue">humanos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="gradient-upds text-white py-6 border-t border-white/10 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-center text-xs text-slate-300">
+            <p class="font-semibold text-white mb-1">
+                UNIVERSIDAD PRIVADA DOMINGO SAVIO
+            </p>
+            <p class="text-slate-400">
+                Programa de Capacitación Docente • Claude AI y GitHub para la Creación y Publicación de Recursos Digitales
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
